@@ -1,0 +1,60 @@
+
+This set of scripts splits transcript sequence fasta files by window lengths and then merges the results of culstering to parallelise the computation of ICE.
+
+
+############################################################
+ice_cycle_split.py:
+This script takes a single fasta file as input as well as window and overlap length. It outputs mutliple fasta files based on the different window length splits. 
+
+usage: ice_cycle_split.py [-h] [-f F] [-w W] [-o O] [-p P]
+
+F - Fasta file containing transcript sequences
+W - Window size for length of sequences
+O - Overlap size for length of sequences
+P - Prefix for output split fasta files
+
+############################################################
+ice_cycle_recover.py:
+This script recovers transcript sequences which may not have been completely clustered due to length cut-offs from file splitting. 
+
+usage: ice_cycle_recover.py [-h] [-r R] [-f F] [-o O]
+
+R - File with list of cluster report csv files
+
+For example:
+path/to/file/cluster_report.FL.csv
+
+F - File with list of split fasta files used for clustering
+
+For example:
+path/to/file/flnc_0_600.fa
+
+O - Output fasta file name
+
+############################################################
+ice_cycle_merge.py:
+This script merges all the clustering results.
+
+usage: ice_cycle_merge.py [-h] [-rr RR] [-rf RF] [-sf SF] [-cr CR] [-cf CF] [-p P]
+
+RR - Recover cluster report csv file
+RF - Recover cluster fasta file
+
+SF - File list of fasta files for split run inputs
+
+For example:
+path/to/file/flnc_0_600.fa
+
+CR - File list of cluster report csv files for split runs
+
+For example:
+path/to/file/cluster_report.FL.csv
+
+CF - File list of cluster fasta files for split run outputs
+
+For example:
+path/to/file/final.consensus.fasta
+
+P -  Prefix for output files
+
+
