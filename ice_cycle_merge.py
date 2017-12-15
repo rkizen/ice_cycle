@@ -173,13 +173,15 @@ for line in recovercluster_file_contents:
         
     cluster_id = line_split[0]
     flnc_id = line_split[1]
-    new_cluster_id = "rec_" + cluster_id    
+    new_cluster_id = "rec_" + cluster_id
+    
+    fl_flag = line_split[2]
     
     rec_clust_flnc_dict[flnc_id] = new_cluster_id
     
 
     
-    report_line = ",".join([new_cluster_id,flnc_id,"FL"])
+    report_line = ",".join([new_cluster_id,flnc_id,fl_flag])
     outfile_report.write(report_line)
     outfile_report.write("\n")
         
@@ -252,6 +254,8 @@ for filepath in filelist_file_contents:
         flnc_id = line_split[1]
         new_cluster_id = file_id + "_" + cluster_id
         
+        fl_flag = line_split[2]
+        
         #store info about cluster to flnc match
         if new_cluster_id not in cluster_flnc_dict:
             cluster_flnc_dict[new_cluster_id] = {}
@@ -267,7 +271,7 @@ for filepath in filelist_file_contents:
         if new_cluster_id in rec_redundant_cluster_dict:
             continue
         
-        report_line = ",".join([new_cluster_id,flnc_id,"FL"])
+        report_line = ",".join([new_cluster_id,flnc_id,fl_flag])
         outfile_report.write(report_line)
         outfile_report.write("\n")
         
